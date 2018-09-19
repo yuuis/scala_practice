@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>closure</title>
+</head>
+
+<body>
+  <p>hello, world</p>
+  <script>
+    // list
+    var candidates = new Array(1, 2, 3, 4, 5);
+
+    // a function to retrieve elements satisfying the condition from the array of arguments
+    // the predicate function in an anonymous function is a free function (無名関数の中のpredicate関数は自由関数)
+    var filter = function (predicate) {
+      return function (candidates) {
+        var numbers = new Array();
+
+        for (var i = 0; i < candidates.length; i++) {
+          if (predicate(candidates[i])) {
+            numbers.push(candidates[i])
+          }
+        }
+        return numbers;
+      };
+    };
+
+    // 
+    var predicate = function (x) {
+      return (x % 2) == 0;
+    };
+
+    // even filter function
+    var evenFilter = filter(predicate)
+    var results = evenFilter(candidates);
+
+    // output results to console
+    for (var i = 0; i < results.length; i++) {
+      console.log(results[i]);
+    }
+
+  </script>
+</body>
+
+</html>
